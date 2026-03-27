@@ -1,4 +1,4 @@
-# Wordex 
+# Wordex – Command-Line Wordle Game
 
 ## Project Overview 
 
@@ -81,4 +81,5 @@ Select menu options by entering the numbers shown beside each option
 The testscript only works with the current textfiles, using the application will cause the textfiles to be modified 
 resulting in the failure of testcases. Please ensure to have the current textfiles when running the testscript.
        
-
+##
+Done By: Lohit, Mohit, Nithya and Zainab
