@@ -1,0 +1,72 @@
+name: Wordex CI Pipeline
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Build wordex executable
+        run: |
+          make wordex
+      
+      - name: Build and test
+        run: | 
+          make bctest
+          ./test_script > test_results.txt
+          gcov bctest-wordex.c > wordex_coverage.txt
+          gcov bctest-authentication.c > authentication_coverage.txt
+          gcov bctest-game_logic.c > game_logic_coverage.txt
+          gcov bctest-history.c > history_coverage.txt
+          gcov bctest-leaderboard.c > leaderboard_coverage.txt
+          gcov bctest-statistics.c > statistics_coverage.txt
+          
+      - name: Upload wordex executable
+        uses: actions/upload-artifact@v4
+        with:
+            name: wordex-executable
+            path: ./wordex
+      
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+            name: test-results
+            path: ./test_results.txt
+      
+      - name: Upload wordex coverage report
+        uses: actions/upload-artifact@v4
+        with:
+            name: wordex-coverage
+            path: ./wordex_coverage.txt
+
+      - name: Upload authentication coverage report
+        uses: actions/upload-artifact@v4
+        with:
+            name: authentication-coverage
+            path: ./authentication_coverage.txt
+
+      - name: Upload game-logic coverage report
+        uses: actions/upload-artifact@v4
+        with:
+            name: game_logic-coverage
+            path: ./game_logic_coverage.txt
+
+      - name: Upload history coverage report
+        uses: actions/upload-artifact@v4
+        with:
+            name: history-coverage
+            path: ./history_coverage.txt
+
+      - name: Upload leaderboard coverage report
+        uses: actions/upload-artifact@v4
+        with:
+            name: leaderboard-coverage
+            path: ./leaderboard_coverage.txt
+    
+      - name: Upload statistics coverage report
+        uses: actions/upload-artifact@v4
+        with:
+            name: statistics-coverage
+            path: ./statistics_coverage.txt
