@@ -82,4 +82,4 @@ The testscript only works with the current textfiles, using the application will
 resulting in the failure of testcases. Please ensure to have the current textfiles when running the testscript.
        
 ##
-Done By: Lohitashwa, Mohit, Nithya and Zainab
+Done By: Lohitashwa Madhan, Mohit, Nithya and Zainab
